@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eks-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app-eks
+  template:
+    metadata:
+      labels:
+        app: app-eks
+    spec:
+      containers:
+      - name: app-eks
+        image: swaroops6666/speks:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8085
+# service type loadbalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-eks-svc
+spec:
+  selector:
+    app: app-eks
+  ports:
+    - protocol: TCP
+      port: 8085
+      targetPort: 8085
+  type: LoadBalancer
