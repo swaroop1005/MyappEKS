@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-ak-deployment
+  name: eks-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: angular-app
+      app: app-eks
   template:
     metadata:
       labels:
-        app: angular-app
+        app: app-eks
     spec:
       containers:
-      - name: my-angular-app
-        image: akdevopscoaching/mywebapp:latest
+      - name: app-eks
+        image: swaroops6666/speks:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
@@ -23,10 +23,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: angular-app-svc
+  name: app-eks-svc
 spec:
   selector:
-    app: angular-app
+    app: app-eks
   ports:
     - protocol: TCP
       port: 8085
