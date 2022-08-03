@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: app-eks
-        image: swaroops6666/speks:latest
+        image: swaroops6666/speks
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
